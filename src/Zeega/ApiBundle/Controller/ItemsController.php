@@ -332,6 +332,8 @@ class ItemsController extends ApiBaseController
             $itemService = $this->get('zeega.item');
             $item = $itemService->parseItem($requestData->all(), $user);
             $em = $this->getDoctrine()->getEntityManager();
+			// force everything sent via the post API to get RIJS
+			$item->setUserId(1);
             $em->persist($item);
             $em->flush();
             $itemView = $this->renderView('ZeegaApiBundle:Items:show.json.twig', array('item' => $item));
