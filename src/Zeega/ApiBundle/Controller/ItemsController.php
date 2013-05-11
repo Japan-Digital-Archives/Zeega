@@ -316,7 +316,7 @@ class ItemsController extends ApiBaseController
         try {
             // authorization
             $apiKey = $this->getRequest()->query->has('api_key') ? $this->getRequest()->query->get('api_key') : null;
-            $user = $this->getUser($apiKey);
+            $user = $this->getUser($apiKey, true);
             if( !isset($user) ) {
                 return parent::getStatusResponse(401);   
             }
@@ -332,8 +332,6 @@ class ItemsController extends ApiBaseController
             $itemService = $this->get('zeega.item');
             $item = $itemService->parseItem($requestData->all(), $user);
             $em = $this->getDoctrine()->getEntityManager();
-			// force everything sent via the post API to get RIJS
-			$item->setUserId(1);
             $em->persist($item);
             $em->flush();
             $itemView = $this->renderView('ZeegaApiBundle:Items:show.json.twig', array('item' => $item));

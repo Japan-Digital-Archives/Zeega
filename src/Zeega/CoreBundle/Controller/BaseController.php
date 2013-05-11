@@ -20,11 +20,11 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
  */
 class BaseController extends SymfonyBaseController
 {
-    public function getUser($apiKey = null) {
+    public function getUser($apiKey = null, $force_api_key = false) {
         // get the logged user
         $user = parent::getUser();
 
-        if ( null === $user ) {
+        if ( null === $user || $force_api_key ) {
             // if the logged user doesn't exist, check if there's an api key
             if ( null !== $apiKey ) {
                 $em = $this->getDoctrine()->getEntityManager();
