@@ -316,7 +316,8 @@ class ItemsController extends ApiBaseController
         try {
             // authorization
             $apiKey = $this->getRequest()->query->has('api_key') ? $this->getRequest()->query->get('api_key') : null;
-            $user = $this->getUser($apiKey, true);
+			$force_api_key = $this->getRequest()->query->has('force_key');
+            $user = $this->getUser($apiKey, $force_api_key);
             if( !isset($user) ) {
                 return parent::getStatusResponse(401);   
             }
