@@ -7,8 +7,6 @@ Zeega\DataBundle\Entity\Project:
     manyToMany:
         users:
             targetEntity: Zeega\DataBundle\Entity\User
-            inversedBy:
-                name: projects
             joinTable:
                 name: project_users
                 joinColumns:
