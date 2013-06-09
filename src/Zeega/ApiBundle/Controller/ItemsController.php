@@ -408,6 +408,9 @@ class ItemsController extends ApiBaseController
                 if(isset($itemRequestData["tags"])) {
                     $item->setTags($itemRequestData["tags"]);  
                 }
+                if(isset($itemRequestData["attributes"])) {
+                    $item->setAttributes($itemRequestData["attributes"]);  
+                }
             } else {
                 if(isset($itemRequestData["child_items"])) {
                     $itemRequestData["child_items"] = null;
