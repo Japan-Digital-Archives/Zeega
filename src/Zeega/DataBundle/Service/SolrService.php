@@ -82,6 +82,9 @@ class SolrService
             $queryString = self::appendQueryToQueryString($queryString, "tags:(".$query["tags"].")");
         }
 
+        $logger = $this->get('logger');
+        $logger->info($queryString);
+
         // return only the items that belong to a collection
         if(isset($query["collection"])) {    
             $queryString = self::appendQueryToQueryString($queryString, "parent_item:".$query["collection"]);
