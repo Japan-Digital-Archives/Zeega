@@ -73,6 +73,10 @@ class SolrService
             $queryString = self::appendQueryToQueryString($queryString, "text_search:(".$query["text"].")");
         }        
         
+        if(isset($query["nq"])) {
+            $queryString = self::appendQueryToQueryString($queryString, "-text_search:(".$query["nq"].")");
+        }        
+        
         // tag query
         if(isset($query["tags"])) {
             $queryString = self::appendQueryToQueryString($queryString, "tags:(".$query["tags"].")");
