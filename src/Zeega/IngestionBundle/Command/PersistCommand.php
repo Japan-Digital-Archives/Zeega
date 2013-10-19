@@ -81,7 +81,21 @@ class PersistCommand extends ContainerAwareCommand
                 if( $duplicateCheck ) {
                     $dbItem = $em->getRepository('ZeegaDataBundle:Item')->findOneBy(array("uri"=>$item["uri"], "user"=>$user));
                     if( isset ($dbItem) ) {
-                        continue;
+                        $tags = $item->getTags();
+						$dbItem->setTags($tags);
+						$lat = $item->getMediaGeoLatitude();
+						$dbItem->setMediaGeoLatitude($lat);
+						$long = $item->getMediaGeoLongitude();
+						$dbItem->setMediaGeoLongitude($long);
+						$location = $item->getLocation();
+						$dbItem->setLocation($location);
+						
+						$count++;
+						$em->persist($item);
+						if ($count % 100 == 0) {
+							$em->flush();
+						}
+						continue;
                     }
                 } 
                 $count++;
