@@ -41,8 +41,8 @@ class PersistCommand extends ContainerAwareCommand
              ->addOption('user', null, InputOption::VALUE_REQUIRED, 'Url of the item or collection to be ingested')
              ->addOption('ingestor', null, InputOption::VALUE_REQUIRED, 'Url of the item or collection to be ingested')
              ->addOption('check_for_duplicates', null, InputOption::VALUE_NONE,'If set, items that already exist on the database will not
-			 be imported')
-			 ->addOption('replace_duplicates', null, InputOption::VALUE_NONE, 'If set, items (checked by URIs) that already exist on the database will be replaced with any updated information')
+             be imported')
+             ->addOption('replace_duplicates', null, InputOption::VALUE_NONE, 'If set, items (checked by URIs) that already exist on the database will be replaced with any updated information')
              ->setHelp("Help");
     }
 
@@ -55,7 +55,7 @@ class PersistCommand extends ContainerAwareCommand
         $userId = $input->getOption('user');
         $ingestor = $input->getOption('ingestor');
         $duplicateCheck = $input->getOption('check_for_duplicates');
-		$replaceDuplicates = $input->getOption('replace_duplcates');
+        $replaceDuplicates = $input->getOption('replace_duplcates');
 
         if(null === $filePath || null === $userId || null === $ingestor) {
             $output->writeln('<info>Please run the operation with the --file_path, --ingestor and --user options to execute</info>');
@@ -83,34 +83,34 @@ class PersistCommand extends ContainerAwareCommand
             foreach($items as $item) {
                 if( $duplicateCheck ) {
                     $dbItem = $em->getRepository('ZeegaDataBundle:Item')->findOneBy(array("uri"=>$item["uri"], "user"=>$user));
-					if( isset ($dbItem) ) {
-						continue;
-					}
-				} 
-				if ($replaceDuplicates) {
-					$dbItem = $em->getRepository('ZeegaDataBundle:Item')->findOneBy(array("uri"=>$item["uri"], "user"=>$user));
-					if ( isset ($dbItem) ) {
-						$tags = $item->getTags();
-						$dbItem->setTags($tags);
-						$lat = $item->getMediaGeoLatitude();
-						$dbItem->setMediaGeoLatitude($lat);
-						$long = $item->getMediaGeoLongitude();
-						$dbItem->setMediaGeoLongitude($long);
-						$location = $item->getLocation();
-						$dbItem->setLocation($location);
-						$title = $item->getTitle();
-						$dbItem->setTitle($title);
-						$description = $item->getDescription();
-						$dbItem->setDescription($description);
-						
-						$count++;
-						$em->persist($item);
-						if ($count % 100 == 0) {
-						  $em->flush();
-						}
-						continue;
-					}
-				}
+                    if( isset ($dbItem) ) {
+                        continue;
+                    }
+                } 
+                if ($replaceDuplicates) {
+                    $dbItem = $em->getRepository('ZeegaDataBundle:Item')->findOneBy(array("uri"=>$item["uri"], "user"=>$user));
+                    if ( isset ($dbItem) ) {
+                        $tags = $item->getTags();
+                        $dbItem->setTags($tags);
+                        $lat = $item->getMediaGeoLatitude();
+                        $dbItem->setMediaGeoLatitude($lat);
+                        $long = $item->getMediaGeoLongitude();
+                        $dbItem->setMediaGeoLongitude($long);
+                        $location = $item->getLocation();
+                        $dbItem->setLocation($location);
+                        $title = $item->getTitle();
+                        $dbItem->setTitle($title);
+                        $description = $item->getDescription();
+                        $dbItem->setDescription($description);
+                        
+                        $count++;
+                        $em->persist($item);
+                        if ($count % 100 == 0) {
+                          $em->flush();
+                        }
+                        continue;
+                    }
+                }
                 $count++;
                 $item = $itemService->parseItem($item, $user);
                 $em->persist($item);
