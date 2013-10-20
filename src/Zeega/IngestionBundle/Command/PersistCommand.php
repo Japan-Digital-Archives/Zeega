@@ -108,6 +108,7 @@ class PersistCommand extends ContainerAwareCommand
 						if ($count % 100 == 0) {
 						  $em->flush();
 						}
+						continue;
 					}
 				}
                 $count++;
