@@ -55,7 +55,7 @@ class PersistCommand extends ContainerAwareCommand
         $userId = $input->getOption('user');
         $ingestor = $input->getOption('ingestor');
         $duplicateCheck = $input->getOption('check_for_duplicates');
-        $replaceDuplicates = $input->getOption('replace_duplcates');
+        $replaceDuplicates = $input->getOption('replace_duplicates');
 
         if(null === $filePath || null === $userId || null === $ingestor) {
             $output->writeln('<info>Please run the operation with the --file_path, --ingestor and --user options to execute</info>');
