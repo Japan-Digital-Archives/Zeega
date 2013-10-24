@@ -92,9 +92,15 @@ class PersistCommand extends ContainerAwareCommand
                     if ( isset ($dbItem) ) {
                         $tags = $item["tags"];
                         $dbItem->setTags($tags);
+<<<<<<< HEAD
                         $lat = $item["media_geo_latitude"];
                         $dbItem->setMediaGeoLatitude($lat);
                         $long = $item["media_geo_longitude"];
+=======
+                        $lat = ( isset($item["media_geo_latitude"]) ? $item["media_geo_latitude"] : null);
+                        $dbItem->setMediaGeoLatitude($lat);
+                        $long = ( isset($item["media_geo_longitude"]) ? $item["media_geo_longitude"] : null) ;
+>>>>>>> e768e8605e1a9f5e36bad6eca36858c448dfab9e
                         $dbItem->setMediaGeoLongitude($long);
                         $location = $item["location"];
                         $dbItem->setLocation($location);
