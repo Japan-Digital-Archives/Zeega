@@ -179,14 +179,15 @@ class Item
      */
     public function __construct()
     {
+        $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
         $this->child_items = new \Doctrine\Common\Collections\ArrayCollection();
         $this->parent_items = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -202,14 +203,14 @@ class Item
     public function setTitle($title)
     {
         $this->title = $title;
-    
+
         return $this;
     }
 
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -225,14 +226,14 @@ class Item
     public function setUserId($userId)
     {
         $this->user_id = $userId;
-    
+
         return $this;
     }
 
     /**
      * Get user_id
      *
-     * @return integer 
+     * @return integer
      */
     public function getUserId()
     {
@@ -248,14 +249,14 @@ class Item
     public function setDescription($description)
     {
         $this->description = $description;
-    
+
         return $this;
     }
 
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -271,14 +272,14 @@ class Item
     public function setText($text)
     {
         $this->text = $text;
-    
+
         return $this;
     }
 
     /**
      * Get text
      *
-     * @return string 
+     * @return string
      */
     public function getText()
     {
@@ -294,14 +295,14 @@ class Item
     public function setUri($uri)
     {
         $this->uri = $uri;
-    
+
         return $this;
     }
 
     /**
      * Get uri
      *
-     * @return string 
+     * @return string
      */
     public function getUri()
     {
@@ -317,14 +318,14 @@ class Item
     public function setAttributionUri($attributionUri)
     {
         $this->attribution_uri = $attributionUri;
-    
+
         return $this;
     }
 
     /**
      * Get attribution_uri
      *
-     * @return string 
+     * @return string
      */
     public function getAttributionUri()
     {
@@ -340,14 +341,14 @@ class Item
     public function setDateCreated($dateCreated)
     {
         $this->date_created = $dateCreated;
-    
+
         return $this;
     }
 
     /**
      * Get date_created
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateCreated()
     {
@@ -363,14 +364,14 @@ class Item
     public function setDateUpdated($dateUpdated)
     {
         $this->date_updated = $dateUpdated;
-    
+
         return $this;
     }
 
     /**
      * Get date_updated
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateUpdated()
     {
@@ -386,14 +387,14 @@ class Item
     public function setArchive($archive)
     {
         $this->archive = $archive;
-    
+
         return $this;
     }
 
     /**
      * Get archive
      *
-     * @return string 
+     * @return string
      */
     public function getArchive()
     {
@@ -409,14 +410,14 @@ class Item
     public function setMediaType($mediaType)
     {
         $this->media_type = $mediaType;
-    
+
         return $this;
     }
 
     /**
      * Get media_type
      *
-     * @return string 
+     * @return string
      */
     public function getMediaType()
     {
@@ -432,14 +433,14 @@ class Item
     public function setLayerType($layerType)
     {
         $this->layer_type = $layerType;
-    
+
         return $this;
     }
 
     /**
      * Get layer_type
      *
-     * @return string 
+     * @return string
      */
     public function getLayerType()
     {
@@ -455,14 +456,14 @@ class Item
     public function setThumbnailUrl($thumbnailUrl)
     {
         $this->thumbnail_url = $thumbnailUrl;
-    
+
         return $this;
     }
 
     /**
      * Get thumbnail_url
      *
-     * @return string 
+     * @return string
      */
     public function getThumbnailUrl()
     {
@@ -478,14 +479,14 @@ class Item
     public function setChildItemsCount($childItemsCount)
     {
         $this->child_items_count = $childItemsCount;
-    
+
         return $this;
     }
 
     /**
      * Get child_items_count
      *
-     * @return integer 
+     * @return integer
      */
     public function getChildItemsCount()
     {
@@ -501,14 +502,14 @@ class Item
     public function setMediaGeoLatitude($mediaGeoLatitude)
     {
         $this->media_geo_latitude = $mediaGeoLatitude;
-    
+
         return $this;
     }
 
     /**
      * Get media_geo_latitude
      *
-     * @return float 
+     * @return float
      */
     public function getMediaGeoLatitude()
     {
@@ -524,14 +525,14 @@ class Item
     public function setMediaGeoLongitude($mediaGeoLongitude)
     {
         $this->media_geo_longitude = $mediaGeoLongitude;
-    
+
         return $this;
     }
 
     /**
      * Get media_geo_longitude
      *
-     * @return float 
+     * @return float
      */
     public function getMediaGeoLongitude()
     {
@@ -547,14 +548,14 @@ class Item
     public function setLocation($location)
     {
         $this->location = $location;
-    
+
         return $this;
     }
 
     /**
      * Get location
      *
-     * @return string 
+     * @return string
      */
     public function getLocation()
     {
@@ -570,14 +571,14 @@ class Item
     public function setMediaDateCreated($mediaDateCreated)
     {
         $this->media_date_created = $mediaDateCreated;
-    
+
         return $this;
     }
 
     /**
      * Get media_date_created
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getMediaDateCreated()
     {
@@ -593,14 +594,14 @@ class Item
     public function setMediaDateCreatedEnd($mediaDateCreatedEnd)
     {
         $this->media_date_created_end = $mediaDateCreatedEnd;
-    
+
         return $this;
     }
 
     /**
      * Get media_date_created_end
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getMediaDateCreatedEnd()
     {
@@ -616,14 +617,14 @@ class Item
     public function setMediaCreatorUsername($mediaCreatorUsername)
     {
         $this->media_creator_username = $mediaCreatorUsername;
-    
+
         return $this;
     }
 
     /**
      * Get media_creator_username
      *
-     * @return string 
+     * @return string
      */
     public function getMediaCreatorUsername()
     {
@@ -639,14 +640,14 @@ class Item
     public function setMediaCreatorRealname($mediaCreatorRealname)
     {
         $this->media_creator_realname = $mediaCreatorRealname;
-    
+
         return $this;
     }
 
     /**
      * Get media_creator_realname
      *
-     * @return string 
+     * @return string
      */
     public function getMediaCreatorRealname()
     {
@@ -662,14 +663,14 @@ class Item
     public function setLicense($license)
     {
         $this->license = $license;
-    
+
         return $this;
     }
 
     /**
      * Get license
      *
-     * @return string 
+     * @return string
      */
     public function getLicense()
     {
@@ -685,14 +686,14 @@ class Item
     public function setAttributes($attributes)
     {
         $this->attributes = $attributes;
-    
+
         return $this;
     }
 
     /**
      * Get attributes
      *
-     * @return array 
+     * @return array
      */
     public function getAttributes()
     {
@@ -708,14 +709,14 @@ class Item
     public function setTags($tags)
     {
         $this->tags = $tags;
-    
+
         return $this;
     }
 
     /**
      * Get tags
      *
-     * @return array 
+     * @return array
      */
     public function getTags()
     {
@@ -731,14 +732,14 @@ class Item
     public function setIdAtSource($idAtSource)
     {
         $this->id_at_source = $idAtSource;
-    
+
         return $this;
     }
 
     /**
      * Get id_at_source
      *
-     * @return string 
+     * @return string
      */
     public function getIdAtSource()
     {
@@ -754,14 +755,14 @@ class Item
     public function setEnabled($enabled)
     {
         $this->enabled = $enabled;
-    
+
         return $this;
     }
 
     /**
      * Get enabled
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getEnabled()
     {
@@ -777,14 +778,14 @@ class Item
     public function setPublished($published)
     {
         $this->published = $published;
-    
+
         return $this;
     }
 
     /**
      * Get published
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getPublished()
     {
@@ -800,14 +801,14 @@ class Item
     public function setGeoLatlng($geoLatlng)
     {
         $this->geo_latlng = $geoLatlng;
-    
+
         return $this;
     }
 
     /**
      * Get geo_latlng
      *
-     * @return string 
+     * @return string
      */
     public function getGeoLatlng()
     {
@@ -823,14 +824,14 @@ class Item
     public function setIngestedBy($ingestedBy)
     {
         $this->ingested_by = $ingestedBy;
-    
+
         return $this;
     }
 
     /**
      * Get ingested_by
      *
-     * @return string 
+     * @return string
      */
     public function getIngestedBy()
     {
@@ -846,14 +847,14 @@ class Item
     public function setDuration($duration)
     {
         $this->duration = $duration;
-    
+
         return $this;
     }
 
     /**
      * Get duration
      *
-     * @return integer 
+     * @return integer
      */
     public function getDuration()
     {
@@ -869,14 +870,14 @@ class Item
     public function setUser(\Zeega\DataBundle\Entity\User $user = null)
     {
         $this->user = $user;
-    
+
         return $this;
     }
 
     /**
      * Get user
      *
-     * @return Zeega\DataBundle\Entity\User 
+     * @return Zeega\DataBundle\Entity\User
      */
     public function getUser()
     {
@@ -892,7 +893,7 @@ class Item
     public function addChildItem(\Zeega\DataBundle\Entity\Item $childItems)
     {
         $this->child_items[] = $childItems;
-    
+
         return $this;
     }
 
@@ -909,7 +910,7 @@ class Item
     /**
      * Get child_items
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getChildItems()
     {
@@ -925,7 +926,7 @@ class Item
     public function addParentItem(\Zeega\DataBundle\Entity\Item $parentItems)
     {
         $this->parent_items[] = $parentItems;
-    
+
         return $this;
     }
 
@@ -942,7 +943,7 @@ class Item
     /**
      * Get parent_items
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getParentItems()
     {
