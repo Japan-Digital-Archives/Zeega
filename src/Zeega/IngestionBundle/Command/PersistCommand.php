@@ -102,7 +102,7 @@ class PersistCommand extends ContainerAwareCommand
                         $dbItem->setTitle($title);
                         
                         $count++;
-                        $em->persist($item);
+                        $em->persist($dbItem);
                         if ($count % 100 == 0) {
                           $em->flush();
                         }
