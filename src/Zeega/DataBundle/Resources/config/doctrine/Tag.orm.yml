@@ -1,0 +1,28 @@
+# src/Zeega/\CoreBundle\/Resources/config/doctrine/Tag.orm.yml
+Zeega\DataBundle\Entity\Tag:
+    type: entity
+    table: tags
+    repositoryClass: Zeega\DataBundle\Repository\TagRepository
+    manyToMany:
+        items:
+            targetEntity: Item
+            joinTable:
+                name: item_tags
+                joinColumns:
+                    tag_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    item_id:
+                        referencedColumnName: id
+    id:
+        id:
+            type: bigint
+            generator: { strategy: AUTO }
+    fields:
+        name:
+            type: string
+            length: 
+            nullable: false
+        date_created:
+            type: datetime
+            nullable: true
