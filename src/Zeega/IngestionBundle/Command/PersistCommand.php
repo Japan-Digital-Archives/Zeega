@@ -79,6 +79,7 @@ class PersistCommand extends ContainerAwareCommand
 
             $itemService = $this->getContainer()->get('zeega.item');
             $count = 0;
+			$replace_count = 0;
 
             foreach($items as $item) {
                 if( $duplicateCheck ) {
@@ -88,7 +89,7 @@ class PersistCommand extends ContainerAwareCommand
                     }
                 } 
                 if ($replaceDuplicates) {
-                    $dbItem = $em->getRepository('ZeegaDataBundle:Item')->findOneBy(array("uri"=>$item["uri"], "user"=>$user));
+                    $dbItem = $em->getRepository('ZeegaDataBundle:Item')->findOneBy(array("attribution_uri"=>$item["attribution_uri"], "user"=>$user));
                     if ( isset ($dbItem) ) {
                         $tags = $item["tags"];
                         $dbItem->setTags($tags);
@@ -100,10 +101,18 @@ class PersistCommand extends ContainerAwareCommand
                         $dbItem-> setLocation($location);
                         $title = $item["title"];
                         $dbItem->setTitle($title);
+			$date = $item["media_date_created"];
+			%dbItem->setMediaDateCreated($date);
+			$media = $item["media_type"];
+			$dbItem->setMediaType($media);
+			$layer = $item["layer_type"];
+			$dbItem->setLayerType($layer);
+			$uri = $item["uri"];
+			$dbItem->setUri($uri);
                         
-                        $count++;
-                        $em->persist($dbItem);
-                        if ($count % 100 == 0) {
+                        $replace_count++;
+                        $em->persist($item);
+                        if ($replace_count % 100 == 0) {
                           $em->flush();
                         }
                         continue;
@@ -120,7 +129,7 @@ class PersistCommand extends ContainerAwareCommand
             
             $em->flush();
 
-            $output->writeln("<info>Ingestion complete. $count items added to the database.</info>");
+            $output->writeln("<info>Ingestion complete. $count items added to the database. $replace_count items updated. </info>");
         }
     } 
 }
