@@ -101,14 +101,14 @@ class PersistCommand extends ContainerAwareCommand
                         $dbItem-> setLocation($location);
                         $title = $item["title"];
                         $dbItem->setTitle($title);
-						$date = $item["media_date_created"];
-						%dbItem->setMediaDateCreated($date);
-						$media = $item["media_type"];
-						$dbItem->setMediaType($media);
-						$layer = $item["layer_type"];
-						$dbItem->setLayerType($layer);
-						$uri = $item["uri"];
-						$dbItem->setUri($uri);
+			$date = $item["media_date_created"];
+			%dbItem->setMediaDateCreated($date);
+			$media = $item["media_type"];
+			$dbItem->setMediaType($media);
+			$layer = $item["layer_type"];
+			$dbItem->setLayerType($layer);
+			$uri = $item["uri"];
+			$dbItem->setUri($uri);
                         
                         $replace_count++;
                         $em->persist($item);
