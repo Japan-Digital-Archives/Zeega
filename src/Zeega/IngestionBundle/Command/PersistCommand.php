@@ -80,11 +80,13 @@ class PersistCommand extends ContainerAwareCommand
             $itemService = $this->getContainer()->get('zeega.item');
             $count = 0;
 			$replace_count = 0;
+			$duplicate_count = 0;
 
             foreach($items as $item) {
                 if( $duplicateCheck ) {
                     $dbItem = $em->getRepository('ZeegaDataBundle:Item')->findOneBy(array("uri"=>$item["uri"], "user"=>$user));
                     if( isset ($dbItem) ) {
+						$duplicate_count++;
                         continue;
                     }
                 } 
@@ -102,7 +104,9 @@ class PersistCommand extends ContainerAwareCommand
                         $title = $item["title"];
                         $dbItem->setTitle($title);
 			$date = $item["media_date_created"];
-			%dbItem->setMediaDateCreated($date);
+			$datetime = \DateTime::createFromFormat('Y-m-d H:i:s', $date);
+			$dbItem->setMediaDateCreated($datetime);
+			
 			$media = $item["media_type"];
 			$dbItem->setMediaType($media);
 			$layer = $item["layer_type"];
@@ -111,7 +115,7 @@ class PersistCommand extends ContainerAwareCommand
 			$dbItem->setUri($uri);
                         
                         $replace_count++;
-                        $em->persist($item);
+                        $em->persist($dbItem);
                         if ($replace_count % 100 == 0) {
                           $em->flush();
                         }
@@ -129,7 +133,7 @@ class PersistCommand extends ContainerAwareCommand
             
             $em->flush();
 
-            $output->writeln("<info>Ingestion complete. $count items added to the database. $replace_count items updated. </info>");
+            $output->writeln("<info>Ingestion complete. $count items added to the database. $replace_count items updated. $duplicate_count duplicates found.</info>");
         }
     } 
 }
